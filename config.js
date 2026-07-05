@@ -1,0 +1,1 @@
+module.exports = require("/etc/nodejs_vars/secrets.json");

@@ -1,0 +1,4 @@
+# Project Scope Enforcement
+You are strictly bound to this project workspace folder. 
+Do not read, modify, or reference files outside this root directory. 
+All terminal commands must execute directly within this workspace.

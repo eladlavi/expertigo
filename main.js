@@ -4,6 +4,7 @@ let actions = {
     //"/foo": myApi.foo,
     //"/message_received": myApi.messageReceived,
     //"/login": myApi.login
-    "send_email": myApi.sendEmail
+    //"send_email": myApi.sendEmail
+    "/contact_us": myApi.contactUs
 };
 myServer.startServer(actions);

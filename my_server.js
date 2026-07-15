@@ -1,5 +1,4 @@
 let http = require('http');
-let url = require('url');
 let fs = require('fs');
 
 
@@ -9,7 +8,19 @@ function startServer(actions) {
 
     http.createServer((req, res) => {
 
-        let q = url.parse(req.url, true);
+        const requestUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+        const query = Object.create(null);
+        for (const [key, value] of requestUrl.searchParams.entries()) {
+            if (Object.prototype.hasOwnProperty.call(query, key)) {
+                query[key] = Array.isArray(query[key]) ? query[key].concat(value) : [query[key], value];
+            } else {
+                query[key] = value;
+            }
+        }
+        const q = {
+            pathname: requestUrl.pathname,
+            query: query
+        };
 
         if (q.pathname && q.pathname.startsWith('/api')) {
 

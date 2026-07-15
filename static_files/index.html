@@ -4,56 +4,1059 @@
 <title>ExpertiGo.co.il</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<meta name="description" content="ExpertiGo - פיתוח תוכנה, מערכות web, אוטומציה, בינה מלאכותית והדרכה לעסקים בישראל.">
+<meta name="theme-color" content="#0f172a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Rubik:wght@400;500;700;800&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-body,h1 {font-family: "Raleway", Arial, sans-serif; direction: rtl;}
-h1 {letter-spacing: 6px}
-.w3-row-padding img {margin-bottom: 12px}
+:root {
+  color-scheme: light;
+  --bg: #07111f;
+  --bg-soft: #0c1a31;
+  --surface: rgba(8, 18, 35, 0.72);
+  --surface-strong: #ffffff;
+  --surface-muted: rgba(255, 255, 255, 0.08);
+  --text: #eef4ff;
+  --text-dark: #102033;
+  --muted: #bfd0ea;
+  --muted-dark: #5e718d;
+  --line: rgba(255, 255, 255, 0.14);
+  --line-dark: #d8e0ea;
+  --accent: #f97316;
+  --accent-2: #14b8a6;
+  --accent-3: #38bdf8;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --shadow: 0 24px 80px rgba(3, 8, 18, 0.28);
+  --shadow-soft: 0 16px 44px rgba(2, 6, 23, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Heebo", "Rubik", Arial, sans-serif;
+  direction: rtl;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top right, rgba(56, 189, 248, 0.2), transparent 30%),
+    radial-gradient(circle at left 20%, rgba(249, 115, 22, 0.16), transparent 22%),
+    linear-gradient(180deg, #050b16 0%, #07111f 36%, #0f1b2f 100%);
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: auto;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::before {
+  top: 8%;
+  right: -120px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.18), transparent 70%);
+  filter: blur(12px);
+}
+
+body::after {
+  left: -140px;
+  bottom: 10%;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.12), transparent 72%);
+  filter: blur(16px);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease, background-color 160ms ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.page-shell {
+  position: relative;
+  z-index: 1;
+  width: min(1200px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0 72px;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 28px;
+  align-items: center;
+  padding: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 32px;
+  background: linear-gradient(135deg, rgba(9, 18, 35, 0.92), rgba(7, 16, 32, 0.68));
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 18px auto auto 18px;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.24), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero-copy,
+.hero-visual,
+.section-card,
+.contact-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.eyebrow i {
+  color: var(--accent-3);
+}
+
+.hero h1,
+.section-title,
+.contact-heading {
+  margin: 0;
+  font-family: "Rubik", "Heebo", Arial, sans-serif;
+  line-height: 1.08;
+}
+
+.hero h1 {
+  margin-top: 18px;
+  font-size: clamp(2.6rem, 4.8vw, 4.8rem);
+  letter-spacing: -0.04em;
+}
+
+.hero-lead {
+  margin: 18px 0 0;
+  max-width: 58ch;
+  color: var(--muted);
+  font-size: 1.12rem;
+  line-height: 1.9;
+}
+
+.hero-points {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-point {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: #f5f7fb;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.hero-point i {
+  color: var(--accent-2);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.cta-button,
+.ghost-button,
+.contact-button,
+.captcha-reload-button {
+  border: 0;
+  border-radius: 999px;
+  padding: 13px 20px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.cta-button {
+  background: linear-gradient(135deg, var(--accent), #fb923c);
+  color: #fff;
+  box-shadow: 0 18px 28px rgba(249, 115, 22, 0.28);
+}
+
+.ghost-button {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.hero-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.metric {
+  padding: 16px 14px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.metric strong {
+  display: block;
+  font-size: 1.15rem;
+  color: #fff;
+}
+
+.metric span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.4;
+}
+
+.hero-visual {
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+}
+
+.logo-panel {
+  width: 100%;
+  min-height: 320px;
+  display: grid;
+  place-items: center;
+  padding: 30px;
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04)),
+    radial-gradient(circle at top, rgba(56, 189, 248, 0.16), transparent 58%),
+    rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: var(--shadow-soft);
+}
+
+.logo-panel img {
+  width: min(100%, 520px);
+  height: auto;
+  display: block;
+}
+
+.spotlight-card {
+  width: 100%;
+  display: grid;
+  gap: 14px;
+  padding: 22px 24px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.spotlight-card .row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #eff6ff;
+}
+
+.spotlight-card i {
+  color: var(--accent-3);
+  font-size: 1.1rem;
+}
+
+.spotlight-card small {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.content-section {
+  margin-top: 26px;
+  padding: 34px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--text-dark);
+  box-shadow: var(--shadow-soft);
+}
+
+.section-intro {
+  max-width: 760px;
+  margin: 0 auto 26px;
+  text-align: center;
+}
+
+.section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(20, 184, 166, 0.12);
+  color: #0f766e;
+  font-weight: 800;
+}
+
+.section-title {
+  margin-top: 14px;
+  font-size: clamp(2rem, 3vw, 3rem);
+  color: #0f172a;
+}
+
+.section-lead {
+  margin: 14px 0 0;
+  color: var(--muted-dark);
+  line-height: 1.9;
+  font-size: 1.05rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.service-card,
+.process-card,
+.contact-card,
+.highlights-card {
+  border-radius: 24px;
+  border: 1px solid var(--line-dark);
+  background: linear-gradient(180deg, #fff 0%, #f8fbff 100%);
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.08);
+}
+
+.service-card {
+  padding: 22px;
+  min-height: 190px;
+}
+
+.service-icon,
+.process-index {
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  color: #fff;
+  background: linear-gradient(135deg, #0f766e, #14b8a6);
+  box-shadow: 0 12px 20px rgba(20, 184, 166, 0.22);
+}
+
+.service-icon.orange,
+.process-index.orange {
+  background: linear-gradient(135deg, #f97316, #fb923c);
+}
+
+.service-card h3,
+.process-card h3,
+.contact-card h3 {
+  margin: 14px 0 10px;
+  font-size: 1.18rem;
+  color: #0f172a;
+}
+
+.service-card p,
+.process-card p,
+.contact-card p,
+.highlights-card p {
+  margin: 0;
+  color: var(--muted-dark);
+  line-height: 1.8;
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.highlights-card {
+  padding: 24px;
+}
+
+.highlights-list {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.highlights-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  color: #0f172a;
+  line-height: 1.8;
+}
+
+.highlights-list i {
+  margin-top: 4px;
+  color: var(--accent-2);
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.process-card {
+  padding: 22px;
+}
+
+.process-index {
+  font-weight: 900;
+}
+
+.contact-section {
+  margin-top: 26px;
+  padding: 34px;
+  border-radius: 30px;
+  background: linear-gradient(145deg, #091426, #0e1d35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow);
+}
+
+.contact-shell {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.contact-card {
+  padding: 26px;
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.contact-card p,
+.contact-card li {
+  color: var(--muted-dark);
+}
+
+.contact-benefits {
+  display: grid;
+  gap: 12px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-benefits li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-benefits i {
+  color: var(--accent-2);
+}
+
+.contact-form {
+  padding: 26px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+}
+
+.contact-form h2 {
+  margin: 0;
+  font-size: clamp(1.7rem, 2.5vw, 2.4rem);
+}
+
+.contact-form p {
+  margin: 12px 0 22px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.contact-field {
+  margin-bottom: 14px;
+}
+
+.contact-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: #eff6ff;
+}
+
+.contact-field input,
+.contact-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  outline: none;
+  transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.contact-field input::placeholder,
+.contact-field textarea::placeholder {
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  border-color: rgba(56, 189, 248, 0.74);
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.16);
+  background: rgba(255, 255, 255, 0.11);
+}
+
+.captcha-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.captcha-image {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+.captcha-reload-button,
+.contact-button {
+  color: #fff;
+}
+
+.captcha-reload-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.contact-button {
+  width: 100%;
+  background: linear-gradient(135deg, var(--accent), #fdba74);
+  box-shadow: 0 18px 30px rgba(249, 115, 22, 0.28);
+}
+
+.contact-button:disabled,
+.captcha-reload-button:disabled {
+  opacity: 0.72;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.captcha-warning {
+  color: #fcd34d;
+  margin-top: 8px;
+  font-size: 0.95rem;
+}
+
+.contact-error,
+.contact-success {
+  min-height: 24px;
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+.contact-error {
+  color: #fca5a5;
+}
+
+.contact-success {
+  color: #86efac;
+}
+
+.footer-wrap {
+  margin-top: 22px;
+  padding: 20px 8px 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.9;
+}
+
+@media (max-width: 1024px) {
+  .hero,
+  .contact-shell,
+  .highlights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-grid,
+  .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-visual {
+    order: -1;
+  }
+}
+
+@media (max-width: 720px) {
+  .page-shell {
+    width: min(100% - 20px, 1200px);
+    padding-top: 10px;
+  }
+
+  .hero,
+  .content-section,
+  .contact-section {
+    padding: 22px;
+    border-radius: 24px;
+  }
+
+  .hero-points,
+  .hero-metrics,
+  .process-grid,
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .cta-button,
+  .ghost-button {
+    width: 100%;
+    text-align: center;
+  }
+}
 </style>
   <link rel="stylesheet" crossorigin href="/assets/index-BClisp5D.css">
 </head>
 <body>
 
-<!-- !PAGE CONTENT! -->
-<div class="w3-content" style="max-width:1500px">
+<div class="page-shell">
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><i class="fa fa-bolt" aria-hidden="true"></i>פתרונות תוכנה, AI ואוטומציה לעסקים בישראל</div>
+        <h1>מייצרים מערכות חכמות שנראות מצוין ועובדות חזק.</h1>
+        <p class="hero-lead">ExpertiGo בונה תוכנות מורכבות, מערכות web, אוטומציות ומוצרי AI שמותאמים לשוק הישראלי. אנחנו משלבים חשיבה הנדסית נקייה, עיצוב חד ומענה בעברית כדי להפוך רעיון למערכת יציבה, יעילה ומרשימה.</p>
 
-<!-- Header -->
-<header class="w3-panel w3-center w3-opacity" style="padding:80px 16px">
-  <h1 class="w3-xlarge">אקספרטיגו</h1>
-  <h1 class="w3-large">פיתוח תוכנה ומערכות מידע ע"י מומחים</h1>
-  
-</header>
+        <ul class="hero-points">
+          <li class="hero-point"><i class="fa fa-check-circle" aria-hidden="true"></i>פיתוח תוכנה ומערכות מידע</li>
+          <li class="hero-point"><i class="fa fa-check-circle" aria-hidden="true"></i>אוטומציה, בוטים ואינטגרציות</li>
+          <li class="hero-point"><i class="fa fa-check-circle" aria-hidden="true"></i>אפליקציות Android ופתרונות mobile</li>
+          <li class="hero-point"><i class="fa fa-check-circle" aria-hidden="true"></i>בינה מלאכותית, מודלים וסוכנים</li>
+        </ul>
 
-<!-- Photo Grid -->
-<div class="w3-row-padding w3-grayscale" style="margin-bottom:60px;font-size: large;">
-  <div class="w3-half">
-    <ul>
-      <li>פיתוח תוכנות מורכבות ומתקדמות לעסק שלך</li>
-      <li>ייעוץ והדרכה</li>
-      <li>פיתוח אפליקציות לאנדרואיד</li>
-      <li>מערכות מבוססות web</li>
-      <li>קורסים והכשרות בפיתוח</li>
-      <li>הגנת המידע ושרידות מערכות</li>
-      <li>פיתוח צ'אט בוטים ואטומציה לעסך שלך</li>
-      <li>פתרונות נקיים, ענייניים ופשוטים לבעיות מסובכות</li>
-      <li>אנחנו מתמחים בתוכנות המתממשקות למכשירים שונים</li>
-      <li>אנחנו מתמחים בפיתוח מכונות AI, אימון מודלים ובניית סוכני AI לעסק שלך.</li>
-    </ul>
-  </div>
+        <div class="hero-actions">
+          <a class="cta-button" href="#contact">דברו איתנו</a>
+          <a class="ghost-button" href="#services">לראות מה אנחנו עושים</a>
+        </div>
 
-  <div class="w3-half">
-    <img src="/assets/logo.png" style="width:50%;height:50%;"/>
-  </div>
-</div>  
-<!-- End Page Content -->
+        <div class="hero-metrics">
+          <div class="metric">
+            <strong>פתרונות end-to-end</strong>
+            <span>מהאפיון ועד לעלייה לאוויר ולתמיכה שוטפת.</span>
+          </div>
+          <div class="metric">
+            <strong>עבודה מדויקת</strong>
+            <span>קוד נקי, תכנון חכם ושקיפות מלאה לאורך הדרך.</span>
+          </div>
+          <div class="metric">
+            <strong>ממוקדים בישראל</strong>
+            <span>עברית, זמינות גבוהה והבנה של הצרכים המקומיים.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="logo-panel">
+          <img src="/assets/logo.png" alt="ExpertiGo logo" loading="eager">
+        </div>
+        <div class="spotlight-card">
+          <div class="row"><i class="fa fa-sitemap" aria-hidden="true"></i><strong>מערכות מורכבות</strong></div>
+          <small>מוצרים ניתנים להרחבה, עם ארכיטקטורה שמביאה יציבות וביצועים.</small>
+        </div>
+        <div class="spotlight-card">
+          <div class="row"><i class="fa fa-magic" aria-hidden="true"></i><strong>חוויית משתמש ברורה</strong></div>
+          <small>עיצוב מודרני, קריא ונוח למשתמשים דוברי עברית במובייל ובדסקטופ.</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="services">
+      <div class="section-intro">
+        <div class="section-kicker"><i class="fa fa-cubes" aria-hidden="true"></i>מה אנחנו בונים</div>
+        <h2 class="section-title">מענה רחב לעסקים שרוצים לגדול בלי להתפשר על איכות.</h2>
+        <p class="section-lead">מהמערכת הפנימית הקטנה ביותר ועד מוצר חכם שמנהל תהליכים שלמים, אנחנו מתרגמים צורך עסקי לפתרון טכנולוגי שעובד לאורך זמן.</p>
+      </div>
+
+      <div class="card-grid">
+        <article class="service-card">
+          <div class="service-icon"><i class="fa fa-laptop" aria-hidden="true"></i></div>
+          <h3>מערכות web ומוצרים ארגוניים</h3>
+          <p>בנייה של מערכות מידע, פורטלים, דשבורדים וכלי ניהול עם חוויית שימוש חדה ומבנה יציב.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-icon orange"><i class="fa fa-android" aria-hidden="true"></i></div>
+          <h3>אפליקציות Android</h3>
+          <p>פיתוח אפליקציות לעסק, לשטח ולצוותים תפעוליים, עם חיבור טבעי למערכות קיימות.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-icon"><i class="fa fa-cogs" aria-hidden="true"></i></div>
+          <h3>בינה מלאכותית וסוכנים חכמים</h3>
+          <p>אימון מודלים, בניית סוכני AI ואוטומציה חכמה שמקצרת תהליכים ומפנה זמן לצוות.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-icon orange"><i class="fa fa-comments" aria-hidden="true"></i></div>
+          <h3>צ'אטבוטים ואוטומציות</h3>
+          <p>אוטומציות תפעוליות וצ'אטבוטים שמחברים בין שירות, מכירות ותמיכה בצורה נקייה.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-icon"><i class="fa fa-shield" aria-hidden="true"></i></div>
+          <h3>אבטחת מידע ושרידות</h3>
+          <p>תכנון חכם שמדגיש הגנה על מידע, יציבות מערכת ועמידות מול תקלות ותקלות-קצה.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-icon orange"><i class="fa fa-graduation-cap" aria-hidden="true"></i></div>
+          <h3>ייעוץ, הדרכה והכשרות</h3>
+          <p>ליווי טכנולוגי, בניית תהליכי עבודה והכשרות לצוותים שרוצים לעלות רמה מהר.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-intro">
+        <div class="section-kicker"><i class="fa fa-star" aria-hidden="true"></i>למה לקוחות עובדים איתנו</div>
+        <h2 class="section-title">שילוב של הנדסה, אסתטיקה וחשיבה עסקית.</h2>
+        <p class="section-lead">אנחנו לא בונים רק משהו שעובד. אנחנו בונים משהו שנעים להציג, קל לתחזק, ומוכן לגדול יחד עם העסק.</p>
+      </div>
+
+      <div class="highlights-grid">
+        <article class="highlights-card">
+          <h3>מתאימים את הפתרון לצורך</h3>
+          <p>אנחנו אוהבים פשטות חכמה: לייצר בדיוק את מה שצריך, בלי עודף מיותר, ועם הרבה תשומת לב לפרטים.</p>
+          <ul class="highlights-list">
+            <li><i class="fa fa-check" aria-hidden="true"></i><span>אפיון ממוקד שמתחיל מהבעיה העסקית ולא מהטכנולוגיה.</span></li>
+            <li><i class="fa fa-check" aria-hidden="true"></i><span>קוד מסודר, קריא וניתן להרחבה.</span></li>
+            <li><i class="fa fa-check" aria-hidden="true"></i><span>עבודה שוטפת בשקיפות גבוהה.</span></li>
+          </ul>
+        </article>
+        <article class="highlights-card">
+          <h3>למי זה מתאים</h3>
+          <p>לעסקים שרוצים מוצר מקצועי, מערכות פנימיות יציבות או אוטומציה שעושה סדר בתפעול היומיומי.</p>
+          <ul class="highlights-list">
+            <li><i class="fa fa-check" aria-hidden="true"></i><span>חברות וארגונים עם תהליכים מורכבים.</span></li>
+            <li><i class="fa fa-check" aria-hidden="true"></i><span>עסקים שרוצים לייעל שירות, מכירות ותפעול.</span></li>
+            <li><i class="fa fa-check" aria-hidden="true"></i><span>צוותים שצריכים מערכות אמינות ובטוחות.</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-intro">
+        <div class="section-kicker"><i class="fa fa-road" aria-hidden="true"></i>איך עובדים</div>
+        <h2 class="section-title">תהליך ברור שמרגיש מסודר כבר מהרגע הראשון.</h2>
+      </div>
+
+      <div class="process-grid">
+        <article class="process-card">
+          <div class="process-index">1</div>
+          <h3>מבינים את המטרה</h3>
+          <p>מגדירים את היעד, המשתמשים, המגבלות והמדדים להצלחה.</p>
+        </article>
+        <article class="process-card">
+          <div class="process-index orange">2</div>
+          <h3>מתכננים פתרון</h3>
+          <p>בוחרים ארכיטקטורה, תעדוף נכון וחוויית משתמש שמייצרת בהירות.</p>
+        </article>
+        <article class="process-card">
+          <div class="process-index">3</div>
+          <h3>בונים ובודקים</h3>
+          <p>מפתחים, מבקרים ומתקנים כדי להגיע למערכת יציבה ואמינה.</p>
+        </article>
+        <article class="process-card">
+          <div class="process-index orange">4</div>
+          <h3>משיקים ומשפרים</h3>
+          <p>עולים לאוויר, עוקבים אחרי השימוש וממשיכים ללטש לפי הצורך.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="contact-shell">
+        <article class="contact-card">
+          <div class="section-kicker"><i class="fa fa-comments" aria-hidden="true"></i>צור קשר</div>
+          <h3>נשמח להבין מה אתם צריכים ולבנות יחד את הפתרון הנכון.</h3>
+          <p>השאירו פרטים ונחזור אליכם בהקדם. אפשר לפנות אלינו לגבי פיתוח, אוטומציה, מערכות web, AI או ייעוץ טכנולוגי.</p>
+          <ul class="contact-benefits">
+            <li><i class="fa fa-check-circle" aria-hidden="true"></i><span>מענה בעברית ובגובה העיניים.</span></li>
+            <li><i class="fa fa-check-circle" aria-hidden="true"></i><span>התאמה מלאה לשוק הישראלי.</span></li>
+            <li><i class="fa fa-check-circle" aria-hidden="true"></i><span>פיתוח נקי, מסודר ומקצועי.</span></li>
+          </ul>
+        </article>
+
+        <div class="contact-form" id="contact-us-div">
+          <h2 class="contact-heading">בואו נתחיל</h2>
+          <p>מלאו את הפרטים, הוסיפו את ההודעה, והקפצ'ה תגן על הטופס בדיוק כמו היום.</p>
+
+          <div class="contact-field">
+            <label for="contact-name">שם</label>
+            <input id="contact-name" type="text" maxlength="120" autocomplete="name" placeholder="השם המלא שלכם">
+          </div>
+
+          <div class="contact-field">
+            <label for="contact-email">אימייל</label>
+            <input id="contact-email" type="email" maxlength="254" autocomplete="email" placeholder="name@example.com">
+          </div>
+
+          <div class="contact-field">
+            <label for="contact-message">הודעה</label>
+            <textarea id="contact-message" rows="7" maxlength="4000" placeholder="ספרו לנו בקצרה על הפרויקט, היעד או האתגר"></textarea>
+          </div>
+
+          <div class="contact-field">
+            <label for="captcha-input">אימות קפצ'ה</label>
+            <div class="captcha-row">
+              <img id="captcha-image" class="captcha-image" alt="Captcha image" width="130" height="45">
+              <button id="captcha-reload-button" class="captcha-reload-button" type="button" onclick="refreshCaptcha()">רענון תמונה</button>
+            </div>
+            <input id="captcha-input" type="text" maxlength="5" autocomplete="off" spellcheck="false" oninput="handleCaptchaInput()" placeholder="הזינו 5 תווים">
+            <div id="captcha-excluded-warning" class="captcha-warning" hidden>הקפצ'ה לא משתמשת בתווים B, D, I, O, S, 0, 1, 5, 8.</div>
+          </div>
+
+          <button id="send-message-button" class="contact-button" type="button" onclick="sendContactMessage()">שליחת הודעה</button>
+          <div id="contact-error" class="contact-error" aria-live="polite"></div>
+          <div id="contact-success" class="contact-success" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer-wrap">
+    ExpertiGo ltd. &trade; אקספרטיגו בע"מ, היא חברה ישראלית שהוקמה ב-2014.
+  </footer>
 </div>
 
-<!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large" style="direction: ltr;"> 
-   ExpertiGo ltd. &trade;<img src="/assets/elad_at_expertigo_co_il.png" style="width:200px;height:40px;margin-top: 10px;"/>אקספרטיגו בע"מ, היא חברה ישראלית שהוקמה ב-2014.. ליצירת קשר 
+<script>
+const contactUsUrl = "/api/contact_us";
+//const captchaGenerateUrl = "http://localhost:8080/captcha/generate";
+const captchaGenerateUrl = "https://captcha.web-map-service.com/captcha/generate";
+const CAPTCHA_EXPECTED_LENGTH = 5;
+const CAPTCHA_MAX_AGE_MS = 60 * 1000;
+const EXCLUDED_CAPTCHA_SYMBOLS = new Set(["B", "D", "I", "O", "S", "0", "1", "5", "8"]);
 
-</footer>
+let currentCaptchaToken = "";
+let currentCaptchaIssuedAt = 0;
+let currentCaptchaObjectUrl = "";
+let isSubmitting = false;
+
+function normalizeCaptchaInput(value) {
+  return String(value || "")
+    .toUpperCase()
+    .replace(/[^A-Z0-9]/g, "")
+    .split("")
+    .filter((char) => !EXCLUDED_CAPTCHA_SYMBOLS.has(char))
+    .join("")
+    .slice(0, CAPTCHA_EXPECTED_LENGTH);
+}
+
+function setError(message) {
+  document.getElementById("contact-error").textContent = message || "";
+}
+
+function setSuccess(message) {
+  document.getElementById("contact-success").textContent = message || "";
+}
+
+function handleCaptchaInput() {
+  const input = document.getElementById("captcha-input");
+  const rawValue = input.value;
+  const normalized = normalizeCaptchaInput(rawValue);
+  if (rawValue !== normalized) {
+    input.value = normalized;
+  }
+
+  const usedExcluded = rawValue.toUpperCase().split("").some((char) => EXCLUDED_CAPTCHA_SYMBOLS.has(char));
+  document.getElementById("captcha-excluded-warning").hidden = !(usedExcluded || rawValue.length !== normalized.length);
+  setError("");
+}
+
+function isCaptchaExpired() {
+  return !currentCaptchaIssuedAt || (Date.now() - currentCaptchaIssuedAt) > CAPTCHA_MAX_AGE_MS;
+}
+
+async function refreshCaptcha(afterMessage) {
+  const reloadButton = document.getElementById("captcha-reload-button");
+  const captchaImage = document.getElementById("captcha-image");
+  const captchaInput = document.getElementById("captcha-input");
+
+  reloadButton.disabled = true;
+  setError("טוען קפצ'ה...");
+
+  try {
+    const response = await fetch(captchaGenerateUrl, { cache: "no-store" });
+    if (!response.ok) {
+      throw new Error("Failed to load captcha");
+    }
+
+    const blob = await response.blob();
+    const objectUrl = URL.createObjectURL(blob);
+    if (currentCaptchaObjectUrl) {
+      URL.revokeObjectURL(currentCaptchaObjectUrl);
+    }
+    currentCaptchaObjectUrl = objectUrl;
+    captchaImage.src = objectUrl;
+
+    const token = response.headers.get("X-Captcha-Token");
+    if (!token) {
+      currentCaptchaToken = "";
+      currentCaptchaIssuedAt = 0;
+      setError("הקפצ'ה נטענה בלי טוקן. יש לחשוף את X-Captcha-Token ב-CORS.");
+      return;
+    }
+
+    currentCaptchaToken = token;
+    currentCaptchaIssuedAt = Date.now();
+    captchaInput.value = "";
+    document.getElementById("captcha-excluded-warning").hidden = true;
+    setError(afterMessage || "");
+  } catch (err) {
+    currentCaptchaToken = "";
+    currentCaptchaIssuedAt = 0;
+    setError("לא ניתן לטעון את הקפצ'ה. אנא נסו שוב.");
+  } finally {
+    reloadButton.disabled = false;
+  }
+}
+
+async function sendContactMessage() {
+  if (isSubmitting) {
+    return;
+  }
+
+  const sendButton = document.getElementById("send-message-button");
+  const name = document.getElementById("contact-name").value.trim();
+  const email = document.getElementById("contact-email").value.trim();
+  const message = document.getElementById("contact-message").value.trim();
+  const captchaInputElement = document.getElementById("captcha-input");
+  const captcha = normalizeCaptchaInput(captchaInputElement.value);
+  captchaInputElement.value = captcha;
+
+  setError("");
+  setSuccess("");
+
+  if (!name || !email || !message) {
+    setError("יש למלא שם, אימייל והודעה.");
+    return;
+  }
+
+  if (captcha.length !== CAPTCHA_EXPECTED_LENGTH) {
+    setError("נדרש קוד קפצ'ה בן 5 תווים בדיוק.");
+    return;
+  }
+
+  if (!currentCaptchaToken || isCaptchaExpired()) {
+    setError("טוקן הקפצ'ה חסר או פג תוקף. יש לרענן את הקפצ'ה.");
+    refreshCaptcha();
+    return;
+  }
+
+  const params = new URLSearchParams({
+    name,
+    email,
+    captcha,
+    token: currentCaptchaToken
+  });
+
+  isSubmitting = true;
+  sendButton.disabled = true;
+
+  try {
+    const response = await fetch(contactUsUrl + "?" + params.toString(), {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain;charset=UTF-8"
+      },
+      body: message
+    });
+
+    const responseBody = (await response.text()).trim();
+    if (response.ok) {
+      setSuccess("ההודעה נשלחה בהצלחה. נחזור אליכם בהקדם.");
+      document.getElementById("contact-message").value = "";
+      document.getElementById("captcha-input").value = "";
+      refreshCaptcha();
+      return;
+    }
+
+    if (response.status === 401 && responseBody === "invalid or expired captcha") {
+      await refreshCaptcha("הקפצ'ה שגויה או פגה. נסו שוב.");
+      return;
+    }
+
+    await refreshCaptcha("לא ניתן לשלוח את ההודעה כרגע. אנא נסו שוב.");
+  } catch (err) {
+    await refreshCaptcha("לא ניתן לשלוח את ההודעה כרגע. אנא נסו שוב.");
+  } finally {
+    isSubmitting = false;
+    sendButton.disabled = false;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  refreshCaptcha();
+});
+</script>
 
 </body>
 </html>
